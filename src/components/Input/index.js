@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { InputWrapper, Label, InputType } from "./styles";
+import { InputWrapper, Label, InputType, InputContainer, IconWrapper } from "./styles";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+const iconStyle = {
+  fontSize: "20px",
+  color: "#ccc",
+};
+
 const Icono = ({ showEye, onPress }) => (
-  <span onClick={onPress}>{showEye ? <FaEyeSlash /> : <FaEye />}</span>
+  <IconWrapper onClick={onPress}>
+    {showEye ? <FaEyeSlash style={iconStyle} /> : <FaEye style={iconStyle} />}
+  </IconWrapper>
 );
 
 export const Input = ({ label, type, placeholder }) => {
@@ -14,7 +21,7 @@ export const Input = ({ label, type, placeholder }) => {
   };
 
   return (
-    <section>
+    <InputContainer>
       <Label>{label}</Label>
       <InputWrapper>
         <InputType placeholder={placeholder} type={typeInput} />
@@ -22,6 +29,6 @@ export const Input = ({ label, type, placeholder }) => {
           <Icono onPress={toogleTypeInput} showEye={typeInput === "text"} />
         )}
       </InputWrapper>
-    </section>
+    </InputContainer>
   );
 };

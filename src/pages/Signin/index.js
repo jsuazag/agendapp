@@ -1,9 +1,10 @@
 import React from "react";
 import { Input } from "../../components/Input";
+import { PageWrapper } from "../../globalStyles";
 
 export const Signin = () => (
-  <React.Fragment>
-    <img src="./assets/logo.png" alt="logo" />
+  <PageWrapper>
+    <img src="./assets/logo-color.png" alt="logo" />
     <Input 
         type="email" 
         placeholder="Enter your email" 
@@ -12,5 +13,5 @@ export const Signin = () => (
         type="password" 
         placeholder="Enter your password" 
         label="Password" />
-  </React.Fragment>
+  </PageWrapper>
 );
