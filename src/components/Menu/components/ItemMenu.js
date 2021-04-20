@@ -1,6 +1,8 @@
-export const ItemMenu = ({label, icon:Icon}) => (
-    <div>
-        
-        <p>{label}</p>
-    </div>
+import { ItemWrapper, Label } from "./styles"
+
+export const ItemMenu = ({label, icon: Icon}) => (
+    <ItemWrapper>
+        <Icon />
+        <Label>{label}</Label>
+    </ItemWrapper>
 )
