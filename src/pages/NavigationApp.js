@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import { Splash } from "./Splash";
 import { Signup } from "./Signup";
 import { Signin } from "./Signin";
@@ -12,10 +12,17 @@ import { Menu } from "../components/Menu";
 
 
 const AuthenticatedUser = ({children}) => {
+
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    console.log('pathname', pathname);
+  }, [pathname]);
+
   return (
     <Fragment>
       {children}
-      <Menu />
+      <Menu pathname={pathname} />
     </Fragment>
   )
 }

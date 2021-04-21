@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const ItemWrapper = styled.div`
     svg {
-        color: #C7C7CC;
+        color: ${props => props.active ? '#0066FF' : '#C7C7CC'};
         font-size: 1.2em;
     }
-    // border: 1px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,6 +29,6 @@ export const ItemWrapper = styled.div`
 
 export const Label = styled.p`
     line-height: 0px;
-    color: #C7C7CC;
+    color: ${props => props.active ? '#0066FF' : '#C7C7CC'};
     font-size: 0.95em;
 `;

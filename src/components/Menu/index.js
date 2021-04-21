@@ -25,11 +25,11 @@ const MenuOptions = [
   },
 ];
 
-export const Menu = () => {
+export const Menu = ({pathname}) => {
   return (
     <MenuWraper>
       {MenuOptions.map((item, i) => (
-        <ItemMenu key={i} {...item} />
+        <ItemMenu active={item.path === pathname} key={i} {...item} />
       ))}
     </MenuWraper>
   );
