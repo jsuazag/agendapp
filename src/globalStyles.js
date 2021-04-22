@@ -14,3 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 export const PageWrapper = styled.div`
   padding: 15px 20px;
 `;
+
+export const PageWrapperMenu = styled.div`
+  padding: 15px 15px 71px;
+`;

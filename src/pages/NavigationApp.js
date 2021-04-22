@@ -9,6 +9,7 @@ import { Schedule } from "./Schedule";
 import { CreateTask } from "./CreateTask";
 import { TaskDetail } from "./TaskDetail";
 import { Menu } from "../components/Menu";
+import { PageWrapperMenu } from "../globalStyles";
 
 
 const AuthenticatedUser = ({children}) => {
@@ -21,7 +22,9 @@ const AuthenticatedUser = ({children}) => {
 
   return (
     <Fragment>
-      {children}
+      <PageWrapperMenu>
+        {children}
+      </PageWrapperMenu>
       <Menu pathname={pathname} />
     </Fragment>
   )

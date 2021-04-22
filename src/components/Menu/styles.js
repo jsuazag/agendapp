@@ -8,4 +8,5 @@ export const MenuWraper = styled.menu`
     width: 100%;
     margin: 0;
     border-top: 1px solid #ccc;
+    background-color: #fff;
 `;
