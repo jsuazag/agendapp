@@ -71,7 +71,7 @@ export const NavigationApp = () => {
               <Route exact path="/" component={Home} />
               <Route path="/schedule" component={Schedule} />
               <Route path="/create" component={CreateTask} />
-              <Route path="/detail" component={TaskDetail} />
+              <Route path="/detail/:id" component={TaskDetail} />
               <Route path="*" component={NotFound} />
             </Switch>
           </AuthenticatedUser>

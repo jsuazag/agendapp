@@ -10,7 +10,7 @@ import { FaRegClock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getStatusById } from "../../constants/TaskStatus";
 
-export const Taks = ({ name, responsable, timeLeft, status }) => {
+export const Taks = ({ name, responsable, timeLeft, status, id }) => {
 
   const renderStatus = (statusId) => {
     const status = getStatusById(statusId);
@@ -20,7 +20,7 @@ export const Taks = ({ name, responsable, timeLeft, status }) => {
   }
 
   return (
-    <Link to={"/detail"}>
+    <Link to={`/detail/${id}`}>
       <TaskWrapper>
         <TaskTitle>{name}</TaskTitle>
         <TasksDetail>
