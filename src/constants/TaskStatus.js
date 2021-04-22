@@ -1,5 +1,10 @@
 export const TASK_STATUS = [
     {
+        id: 0,
+        name: 'All',
+        color: '#CCC'
+    },
+    {
         id: 1,
         name: 'New',
         color: '#00AEFF'

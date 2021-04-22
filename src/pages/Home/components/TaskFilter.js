@@ -1,16 +1,15 @@
 import { TASK_STATUS } from "../../../constants/TaskStatus";
 import { TaskFilterWrapper, FilterStatusTaskWrapper } from "./styles";
 
-const FilterStatusTask = ({ statusName }) => (
-  <FilterStatusTaskWrapper>{statusName}</FilterStatusTaskWrapper>
+const FilterStatusTask = ({ statusName, statusId, active, onPress }) => (
+  <FilterStatusTaskWrapper onClick={() => onPress(statusId)} active={active} >{statusName}</FilterStatusTaskWrapper>
 );
 
-export const TaskFilter = () => (
+export const TaskFilter = ({ statusId, onPress }) => (
   <TaskFilterWrapper>
-    <FilterStatusTask statusName="All" />
     {
         TASK_STATUS.map((item, key) => (
-            <FilterStatusTask key={key} statusName={item.name}  /> 
+            <FilterStatusTask onPress={onPress} statusId={item.id} active={item.id === statusId} key={key} statusName={item.name}  /> 
         ))
     }
   </TaskFilterWrapper>
