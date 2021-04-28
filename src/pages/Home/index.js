@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Taks } from "../../components/Task";
-import { TASK_STATUS } from "../../constants/TaskStatus";
 import { TaskFilter } from "./components/TaskFilter";
+import { STATUS_FILTER } from './../../constants/TaskFilterStatus';
+import { useFilterStatus } from "../../contexts/FilterStatusContext";
 
 const TASK_LIST = [
   {
@@ -76,36 +77,25 @@ const TASK_LIST = [
   },
 ];
 
-const STATUS_FILTER = {
-  ALL: 0,
-  NEW: 1,
-  IN_PROGRESS: 2,
-  DUE_DATE: 3,
-  CLOSED: 4
-}
 
 export const Home = () => {
 
-  const [statusFilter, setStatusFilter] = useState(STATUS_FILTER.ALL);
   const [taskList, setTaskList] = useState([]);
+  const { currentTaskFilter } = useFilterStatus();
 
   useEffect(() => {
-    if (statusFilter === STATUS_FILTER.ALL) {
+    if (currentTaskFilter === STATUS_FILTER.ALL) {
       setTaskList(TASK_LIST);
     } else {
-      const taskFiltered = TASK_LIST.filter(el => el.status === statusFilter);
+      const taskFiltered = TASK_LIST.filter(el => el.status === currentTaskFilter);
       setTaskList(taskFiltered);
     }
-  }, [statusFilter]);
-
-  const filterHandler = (statusFilterChoose) => {
-    setStatusFilter(statusFilterChoose);
-  }
+  }, [currentTaskFilter]);
 
   return (
     <>
       <h3>Home</h3>
-      <TaskFilter statusId={statusFilter} onPress={ filterHandler } />
+      <TaskFilter />
       <div>
         {taskList.map((item, key) => (
           <Taks key={key} {...item} />
