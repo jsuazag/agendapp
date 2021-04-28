@@ -94,7 +94,6 @@ export const Home = () => {
 
   return (
     <>
-      <h3>Home</h3>
       <TaskFilter />
       <div>
         {taskList.map((item, key) => (

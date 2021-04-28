@@ -10,6 +10,7 @@ import { CreateTask } from "./CreateTask";
 import { TaskDetail } from "./TaskDetail";
 import { Menu } from "../components/Menu";
 import { PageWrapperMenu } from "../globalStyles";
+import { Topbar } from "../components/Topbar";
 
 
 const AuthenticatedUser = ({children}) => {
@@ -22,6 +23,7 @@ const AuthenticatedUser = ({children}) => {
 
   return (
     <Fragment>
+      <Topbar title="titulo pagina" />
       <PageWrapperMenu>
         {children}
       </PageWrapperMenu>
