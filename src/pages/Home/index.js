@@ -3,6 +3,7 @@ import { Taks } from "../../components/Task";
 import { TaskFilter } from "./components/TaskFilter";
 import { STATUS_FILTER } from './../../constants/TaskFilterStatus';
 import { useFilterStatus } from "../../contexts/FilterStatusContext";
+import {Topbar} from './../../components/Topbar';
 
 const TASK_LIST = [
   {
@@ -78,7 +79,7 @@ const TASK_LIST = [
 ];
 
 
-export const Home = () => {
+export const Home = ({title}) => {
 
   const [taskList, setTaskList] = useState([]);
   const { currentTaskFilter } = useFilterStatus();
@@ -94,6 +95,7 @@ export const Home = () => {
 
   return (
     <>
+      <Topbar title={title} />
       <TaskFilter />
       <div>
         {taskList.map((item, key) => (

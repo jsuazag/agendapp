@@ -1,13 +1,13 @@
-import { TopbarContainer, TopbarTitle } from "./styles";
+import { TopbarContainer, TopbarTitle, BackButtonTopbar } from "./styles";
 import { FaAngleLeft } from "react-icons/fa";
 
-export const Topbar = ({ isBackVisible = true, title, onPress }) => {
+export const Topbar = ({ isBackVisible = false, title, onPress }) => {
   return (
     <TopbarContainer>
       {isBackVisible && (
-        <div onClick={onPress}>
+        <BackButtonTopbar onClick={onPress}>
           <FaAngleLeft />
-        </div>
+        </BackButtonTopbar>
       )}
       <TopbarTitle>
         <h4>{title}</h4>
