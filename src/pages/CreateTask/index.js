@@ -4,6 +4,7 @@ import { Input } from "../../components/Input";
 import { Topbar } from "../../components/Topbar";
 import Select from "react-select";
 import DatePicker from "react-date-picker";
+import { useForm, Controller } from "react-hook-form";
 
 const USERS = [
   { value: 1, label: "Juan" },
@@ -16,33 +17,58 @@ const USERS = [
 
 export const CreateTask = ({ title }) => {
   const [dueDateTask, setDueDateTask] = useState(new Date());
-  const [description, setDescription] = useState('');
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: {
+      errors: {},
+    },
+  } = useForm();
+
+  const onSubmitCreate = (data) => {
+    console.log("data form", data);
+  };
 
   return (
     <Fragment>
       <Topbar title={title} />
-      <form>
+      <form onSubmit={handleSubmit(onSubmitCreate)}>
         <Input label="Task title" type="text" placeholder="Enter task title" />
         <div>
-          <label>Responsible </label>
-          <Select placeholder="Select responsible" options={USERS} />
+          <label>Responsible</label>
+          <Controller
+            name="responsible"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                placeholder="Select responsible"
+                options={USERS}
+              />
+            )}
+          />
         </div>
         <div>
           <label>Collaborators</label>
           <Select isMulti placeholder="Select collaborators" options={USERS} />
         </div>
         <div>
-          <DatePicker locale="en-EN" format="dd-MM-yy" value={dueDateTask} onChange={setDueDateTask} />
+          <DatePicker
+            locale="en-EN"
+            format="dd-MM-yy"
+            value={dueDateTask}
+            onChange={setDueDateTask}
+          />
         </div>
         <div>
           <label>Description:</label>
           <div>
-            <textarea onChange={ (e) => setDescription(e.target.value)  } value={description} rows="3"></textarea>
-            {description}
+            <textarea {...register("description")} rows="3"></textarea>
           </div>
         </div>
         <div>
-          <Button text="Create" />
+          <Button type="submit" text="Create" />
         </div>
       </form>
     </Fragment>
