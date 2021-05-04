@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Topbar } from "../../components/Topbar";
@@ -31,16 +31,31 @@ export const CreateTask = ({ title }) => {
     console.log("data form", data);
   };
 
+  useEffect(() => {
+    console.log('errors', errors);
+  }, [errors?.taskTitle])
+
   return (
     <Fragment>
       <Topbar title={title} />
       <form onSubmit={handleSubmit(onSubmitCreate)}>
-        <Input register={register}  name="taskTitle" label="Task title" type="text" placeholder="Enter task title" />
+        <Input 
+          register={register} 
+          name="taskTitle" 
+          rules={{ required: true, minLength: 6 }}
+          label="Task title" 
+          type="text" 
+          placeholder="Enter task title" 
+        />
+        { errors.taskTitle?.type === 'required' && <LabelError>Field required</LabelError> }
+        { errors.taskTitle?.type === 'minLength' && <LabelError>Min Length 6 characters</LabelError> }
+
         <div>
           <label>Responsible</label>
           <Controller
             name="responsible"
             control={control}
+            rules={{ required: true }}
             render={({ field }) => (
               <Select
                 {...field}
@@ -49,12 +64,14 @@ export const CreateTask = ({ title }) => {
               />
             )}
           />
+          { errors.responsible && <LabelError>Field required</LabelError> }
         </div>
         <div>
           <label>Collaborators</label>
           <Controller
             name="collaborators"
             control={control}
+            rules={{ required: true }}
             render={({ field }) => (
               <Select
                 {...field}
@@ -64,16 +81,19 @@ export const CreateTask = ({ title }) => {
               />
             )}
           />
+          { errors.collaborators && <LabelError>Field required</LabelError> }
         </div>
         <div>
           <Controller
             name="dueDateTask"
             control={control}
             defaultValue={new Date()}
+            rules={{ required: true }}
             render={({ field }) => (
               <DatePicker {...field} locale="en-EN" format="dd-MM-yy" />
             )}
           />
+          { errors.dueDateTask && <LabelError>Field required</LabelError> }
         </div>
         <div>
           <label>Description:</label>
@@ -84,7 +104,7 @@ export const CreateTask = ({ title }) => {
               errors={ errors.description }
             />
           </div>
-          <LabelError>{ errors.description && 'field required' }</LabelError>
+          { errors.description && <LabelError>Field required</LabelError> }
         </div>
         <div>
           <Button type="submit" text="Create" />
