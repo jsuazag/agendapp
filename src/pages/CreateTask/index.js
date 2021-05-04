@@ -16,7 +16,7 @@ const USERS = [
 ];
 
 export const CreateTask = ({ title }) => {
-  const [dueDateTask, setDueDateTask] = useState(new Date());
+  
   const {
     register,
     control,
@@ -34,7 +34,7 @@ export const CreateTask = ({ title }) => {
     <Fragment>
       <Topbar title={title} />
       <form onSubmit={handleSubmit(onSubmitCreate)}>
-        <Input label="Task title" type="text" placeholder="Enter task title" />
+        <Input register={register} name="taskTitle" label="Task title" type="text" placeholder="Enter task title" />
         <div>
           <label>Responsible</label>
           <Controller
@@ -51,14 +51,27 @@ export const CreateTask = ({ title }) => {
         </div>
         <div>
           <label>Collaborators</label>
-          <Select isMulti placeholder="Select collaborators" options={USERS} />
+          <Controller
+            name="collaborators"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                isMulti
+                placeholder="Select collaborators"
+                options={USERS}
+              />
+            )}
+          />
         </div>
         <div>
-          <DatePicker
-            locale="en-EN"
-            format="dd-MM-yy"
-            value={dueDateTask}
-            onChange={setDueDateTask}
+          <Controller
+            name="dueDateTask"
+            control={control}
+            defaultValue={new Date()}
+            render={({ field }) => (
+              <DatePicker {...field} locale="en-EN" format="dd-MM-yy" />
+            )}
           />
         </div>
         <div>
