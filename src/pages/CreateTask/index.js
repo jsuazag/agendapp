@@ -1,10 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Topbar } from "../../components/Topbar";
 import Select from "react-select";
 import DatePicker from "react-date-picker";
 import { useForm, Controller } from "react-hook-form";
+import { Textarea, LabelError } from "./styles";
 
 const USERS = [
   { value: 1, label: "Juan" },
@@ -22,7 +23,7 @@ export const CreateTask = ({ title }) => {
     control,
     handleSubmit,
     formState: {
-      errors: {},
+      errors
     },
   } = useForm();
 
@@ -34,7 +35,7 @@ export const CreateTask = ({ title }) => {
     <Fragment>
       <Topbar title={title} />
       <form onSubmit={handleSubmit(onSubmitCreate)}>
-        <Input register={register} name="taskTitle" label="Task title" type="text" placeholder="Enter task title" />
+        <Input register={register}  name="taskTitle" label="Task title" type="text" placeholder="Enter task title" />
         <div>
           <label>Responsible</label>
           <Controller
@@ -77,8 +78,13 @@ export const CreateTask = ({ title }) => {
         <div>
           <label>Description:</label>
           <div>
-            <textarea {...register("description")} rows="3"></textarea>
+            <Textarea 
+              {...register("description", { required: true } )} 
+              rows="3"
+              errors={ errors.description }
+            />
           </div>
+          <LabelError>{ errors.description && 'field required' }</LabelError>
         </div>
         <div>
           <Button type="submit" text="Create" />
