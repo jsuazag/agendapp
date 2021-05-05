@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.section`
-    margin: 15px 0;
+    margin: 0px;
 `;
 
 export const Label = styled.label`
@@ -21,8 +21,8 @@ export const InputType = styled.input`
     background: transparent;
     color: #222;
     flex: 1;
-    padding: 5px 10px;
-    font-size: 1.1em;
+    padding: 8px 10px;
+    font-size: 1em;
 `;
 
 export const IconWrapper = styled.span`

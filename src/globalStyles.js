@@ -1,4 +1,5 @@
 import styled, {createGlobalStyle} from "styled-components";
+import { Theme1 } from "./themes/Theme1";
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -17,4 +18,12 @@ export const PageWrapper = styled.div`
 
 export const PageWrapperMenu = styled.div`
   padding: 15px 15px 71px;
+`;
+
+export const FormGroup = styled.div`
+  margin: 10px 0px;
+  label {
+    font-size: 0.95em;
+    color: ${Theme1.grayText}
+  }
 `;
