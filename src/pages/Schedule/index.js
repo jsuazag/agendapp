@@ -5,6 +5,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
 import { SCREEN_VIEWPORT } from "../../constants/ViewPort";
 import { useScreenViewPort } from "../../hooks/useScreenViewPort";
+import { FormGroup } from "../../globalStyles";
+import { Input } from "../../components/Input";
+import { FaSearch } from 'react-icons/fa';
 
 const localizer = momentLocalizer(moment);
 
@@ -45,7 +48,10 @@ export const Schedule = ({ title }) => {
   return (
     <Fragment>
       <Topbar title={title} />
-      {calendarDefaultView}
+      <FormGroup>
+        <Input type="text" placeholder="search..." icon={FaSearch} />
+      </FormGroup>
+      <br />
       {!loading && (
         <Calendar
           localizer={localizer}

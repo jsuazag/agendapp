@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InputWrapper, Label, InputType, InputContainer, IconWrapper } from "./styles";
+import { InputWrapper, InputType, InputContainer, IconWrapper } from "./styles";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const iconStyle = {
@@ -13,7 +13,7 @@ const Icono = ({ showEye, onPress }) => (
   </IconWrapper>
 );
 
-export const Input = ({ type, placeholder, register = () => {}, name, rules }) => {
+export const Input = ({ type, placeholder, icon:Icon, register = () => {}, name, rules }) => {
   const [typeInput, setTypeInput] = useState(type);
 
   const toogleTypeInput = (e) => {
@@ -27,6 +27,13 @@ export const Input = ({ type, placeholder, register = () => {}, name, rules }) =
         {type === "password" && (
           <Icono onPress={toogleTypeInput} showEye={typeInput === "text"} />
         )}
+        {
+          type !== "password" && Icon && (
+            <IconWrapper>
+              <Icon style={iconStyle} />
+            </IconWrapper>
+          )
+        }
       </InputWrapper>
     </InputContainer>
   );

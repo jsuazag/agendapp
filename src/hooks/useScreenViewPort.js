@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react';
-import {SCREEN_VIEWPORT} from './../constants/ViewPort';
+import { useState, useEffect } from "react";
+import { SCREEN_VIEWPORT } from "./../constants/ViewPort";
 
 export const useScreenViewPort = () => {
   const [screenViewPort, setScreenViewPort] = useState(null);
@@ -17,6 +17,6 @@ export const useScreenViewPort = () => {
   }, []);
 
   return {
-      screenViewPort
+    screenViewPort,
   };
 };
