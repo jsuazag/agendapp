@@ -7,10 +7,8 @@ import { Topbar } from "./../../components/Topbar";
 import { connect } from "react-redux";
 import { fetchTasks } from "../../store";
 
-const TASK_LIST = [];
-
 const Home = ({ title, tasksData, fetchTasksAction }) => {
-  const [taskList, setTaskList] = useState([]);
+  
   const { currentTaskFilter } = useFilterStatus();
 
   useEffect(() => {
@@ -37,7 +35,7 @@ const Home = ({ title, tasksData, fetchTasksAction }) => {
       <Topbar title={title} />
       <TaskFilter />
       <div>
-        {taskList.map((item, key) => (
+        {tasksData.tasks.map((item, key) => (
           <Taks key={key} {...item} />
         ))}
       </div>
@@ -47,7 +45,7 @@ const Home = ({ title, tasksData, fetchTasksAction }) => {
 
 const mapStateToProps = state => {
   return {
-    tasksData: state
+    tasksData: state.task
   }
 }
 

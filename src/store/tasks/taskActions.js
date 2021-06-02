@@ -3,6 +3,8 @@ import {
   FETCH_TASKS_REQUEST,
   FETCH_TASKS_SUCCESS,
 } from "./taskTypes";
+import axios from 'axios';
+import reducer from "./taskReducer";
 
 const TASK_LIST = [
   {
@@ -78,11 +80,21 @@ const TASK_LIST = [
 ];
 
 export const fetchTasks = (status = 0) => {
-  // TODO: llamar el api para obtener las tareas
-  // Axios
   return (dispacth) => {
       dispacth(fetchTaskRequest());
-      dispacth(fetchTaskSuccess(TASK_LIST));
+      //dispacth(fetchTaskSuccess(TASK_LIST));
+      const url = 'http://localhost:4000/tasks';
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiI2MGIwMmQ1M2M5NjJkZTNiZTg5YTkyNDIiLCJyb2xlIjoxLCJpYXQiOjE2MjI1OTg2NzksImV4cCI6MTYyMjY0MTg3OX0.3RY51omwOxGkhKAKWZ1X7kqF0TPB6hmUKYGoFy_y_BI";
+      const headers = {
+        'Authorization': `Bearer ${token}`
+      }
+      axios.get(url, { headers } )
+      .then(response => {
+        console.log('response', response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
   }
 };
 
