@@ -9,8 +9,9 @@ import {
 import { FaRegClock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getStatusById } from "../../constants/TaskStatus";
+import { timeLeftFromNow } from "../../utils/DateFormats";
 
-export const Taks = ({ name, responsable, timeLeft, status, id }) => {
+export const Taks = ({ title, responsible, due_date, status, _id}) => {
 
   const renderStatus = (statusId) => {
     const status = getStatusById(statusId);
@@ -20,14 +21,18 @@ export const Taks = ({ name, responsable, timeLeft, status, id }) => {
   }
 
   return (
-    <Link to={`/detail/${id}`}>
+    <Link to={`/detail/${_id}`}>
       <TaskWrapper>
-        <TaskTitle>{name}</TaskTitle>
+        <TaskTitle>{title}</TaskTitle>
         <TasksDetail>
-          <Responsable>{responsable}</Responsable>
+          <Responsable>{responsible?.name}</Responsable>
           <TimeLeft>
             <FaRegClock />
-            <p>{timeLeft} days left</p>
+            <p>
+              {
+                timeLeftFromNow(due_date)
+              } 
+            </p>
           </TimeLeft>
           { renderStatus(status) }
         </TasksDetail>

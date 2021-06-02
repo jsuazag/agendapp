@@ -34,6 +34,12 @@ const Home = ({ title, tasksData, fetchTasksAction }) => {
     <>
       <Topbar title={title} />
       <TaskFilter />
+      {
+        tasksData.loading && <p>Loading...</p>
+      }
+      {
+        tasksData.error && <p>{ tasksData.error }</p>
+      }
       <div>
         {tasksData.tasks.map((item, key) => (
           <Taks key={key} {...item} />
