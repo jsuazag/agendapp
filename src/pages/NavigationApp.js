@@ -4,7 +4,7 @@ import { Splash } from "./Splash";
 import { Signup } from "./Signup";
 import { Signin } from "./Signin";
 import { NotFound } from "./NotFound";
-import { Home } from "./Home";
+import Home from "./Home";
 import { Schedule } from "./Schedule";
 import { CreateTask } from "./CreateTask";
 import { TaskDetail } from "./TaskDetail";
