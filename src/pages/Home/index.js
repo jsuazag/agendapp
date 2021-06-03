@@ -19,16 +19,13 @@ const Home = ({ title, tasksData, fetchTasksAction }) => {
     fetchTasksAction();
   }, []);
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (currentTaskFilter === STATUS_FILTER.ALL) {
-      setTaskList(TASK_LIST);
+      fetchTasksAction();
     } else {
-      const taskFiltered = TASK_LIST.filter(
-        (el) => el.status === currentTaskFilter
-      );
-      setTaskList(taskFiltered);
+      fetchTasksAction({ status: currentTaskFilter });
     }
-  }, [currentTaskFilter]);*/
+  }, [currentTaskFilter]);
 
   return (
     <>
@@ -57,7 +54,7 @@ const mapStateToProps = state => {
 
 const mapDispacthToProps = dispatch => {
   return {
-    fetchTasksAction: () => dispatch(fetchTasks())
+    fetchTasksAction: (filter) => dispatch(fetchTasks(filter))
   }
 }
 
