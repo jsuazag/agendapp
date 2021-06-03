@@ -3,27 +3,29 @@ import {
   FETCH_TASKS_REQUEST,
   FETCH_TASKS_SUCCESS,
 } from "./taskTypes";
-import axios from "axios";
+import { HTTP_VERBS, requestHttp } from '../../utils/HttpRequest';
 
 export const fetchTasks = (status = 0) => {
   return (dispacth) => {
     dispacth(fetchTaskRequest());
-    const url = "http://localhost:4000/tasks";
+    
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiI2MGIwMmQ1M2M5NjJkZTNiZTg5YTkyNDIiLCJyb2xlIjoxLCJpYXQiOjE2MjI2NzU4OTksImV4cCI6MTYyMjcxOTA5OX0.cVv7wK9yK2zkiCpWYs-CCDR1e28QBrpLTYcQSQ-VK-U";
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    axios
-      .get(url, { headers })
-      .then((response) => {
-        setTimeout(() => {
-          dispacth(fetchTaskSuccess(response.data));
-        }, 2000);
-      })
-      .catch((error) => {
+    const callHttp = async () => {
+      try {
+        const response = await requestHttp(
+            { 
+              method: HTTP_VERBS.GET,
+              token,
+              endpoint: 'tasks'
+            }
+        );
+        dispacth(fetchTaskSuccess(response.data));
+      } catch (error) {
         dispacth(fetchTaskFailure(error.response.statusText));
-      });
+      }
+    };
+    callHttp();
   };
 };
 
