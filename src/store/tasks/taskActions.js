@@ -11,7 +11,6 @@ export const fetchTasks = (filter = {}) => {
     const callHttp = async (filter) => {
       try {
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiI2MGIwMmQ1M2M5NjJkZTNiZTg5YTkyNDIiLCJyb2xlIjoxLCJpYXQiOjE2MjI2NzU4OTksImV4cCI6MTYyMjcxOTA5OX0.cVv7wK9yK2zkiCpWYs-CCDR1e28QBrpLTYcQSQ-VK-U";
-        console.log('filter', filter);
         const response = await requestHttp(
             { 
               method: HTTP_VERBS.GET,

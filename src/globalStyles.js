@@ -27,3 +27,8 @@ export const FormGroup = styled.div`
     color: ${Theme1.grayText}
   }
 `;
+
+export const LabelError = styled.span`
+    color: ${ Theme1.danger };
+    font-weight: bold;
+`;

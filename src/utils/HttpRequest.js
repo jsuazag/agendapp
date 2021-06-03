@@ -18,7 +18,7 @@ const headersConfig = (token) => {
 export const requestHttp = async ({
   method = HTTP_VERBS.POST,
   endpoint,
-  data = {},
+  data = {}, // body
   params = {},
   token = "",
 }) => {

@@ -12,8 +12,3 @@ export const Textarea = styled.textarea`
     border-color: ${ props => props.errors ? Theme1.danger : '#ccc' };
     outline: none;
 `;
-
-export const LabelError = styled.span`
-    color: ${ Theme1.danger };
-    font-weight: bold;
-`;

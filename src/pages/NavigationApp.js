@@ -41,7 +41,7 @@ export const NavigationApp = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setAuth(true);
+      setAuth(false);
       setIsLoading(false);
     }, 1000);
   }, []);

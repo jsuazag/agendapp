@@ -5,8 +5,8 @@ import { Topbar } from "../../components/Topbar";
 import Select from "react-select";
 import DatePicker from "react-date-picker";
 import { useForm, Controller } from "react-hook-form";
-import { Textarea, LabelError } from "./styles";
-import { FormGroup } from "../../globalStyles";
+import { Textarea } from "./styles";
+import { FormGroup, LabelError } from "../../globalStyles";
 
 const USERS = [
   { value: 1, label: "Juan" },
