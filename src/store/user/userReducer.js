@@ -8,7 +8,7 @@ import {
 const initialState = {
   loading: false,
   isAuth: false,
-  error: "",
+  error: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
         error: "",
         isAuth: true,
       };
-    case FETCH_TASKS_FAILURE:
+    case FETCH_LOGIN_FAILURE:
       return {
         loading: false,
         error: action.payload,

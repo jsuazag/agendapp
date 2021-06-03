@@ -19,7 +19,8 @@ export const fetchLogin = (credentials = {}) => {
         localStorage.setItem(TOKEN, response.data.token)
         dispacth(fetchLoginSuccess());
       } catch (error) {
-        dispacth(fetchLoginFailure(error.response.statusText));
+        const messageError = error.response.statusText || 'error';
+        dispacth(fetchLoginFailure(messageError));
       }
     };
     callHttp(credentials);

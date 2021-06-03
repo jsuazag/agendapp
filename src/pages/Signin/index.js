@@ -6,8 +6,13 @@ import { useForm, Controller } from "react-hook-form";
 import { FormGroup, PageWrapper } from "../../globalStyles";
 import { LogoWrapper, TopLink } from "./styles";
 import {LabelError} from '../../globalStyles';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchLogin } from '../../store';
 
 export const Signin = () => {
+
+  const dispatch = useDispatch();
+  const userData = useSelector(state => state.user) ;
 
   const {
     register,
@@ -19,8 +24,9 @@ export const Signin = () => {
     }
   } = useForm({ mode: 'onChange' });
 
-  const onSubmitCreate = (data) => {
+  const onSubmitLogin = (data) => {
     console.log("data form", data);
+    dispatch(fetchLogin(data));
   };
 
   return (
@@ -31,7 +37,10 @@ export const Signin = () => {
       <LogoWrapper>
         <img src="./assets/logo-color.png" alt="logo" />
       </LogoWrapper>
-      <form onSubmit={handleSubmit(onSubmitCreate)}>
+      {
+        userData.error && <LabelError>Email or Password incorrect</LabelError>
+      }
+      <form onSubmit={handleSubmit(onSubmitLogin)}>
         <FormGroup>
           <Input 
             register={register} 
@@ -55,7 +64,10 @@ export const Signin = () => {
           { errors.password?.type === 'required' && <LabelError>Field required</LabelError> }
           { errors.password?.type === 'minLength' && <LabelError>Min Length 6 characters</LabelError> }
         </FormGroup>
-        <Button disabled={!isValid} type="submit" text="Sign in" />
+        <Button 
+          disabled={!isValid} 
+          type="submit"
+          text={ userData.loading ? 'Checking...' : 'Sign in'} />
       </form>
     </PageWrapper>
   );
