@@ -1,2 +1,2 @@
 export { fetchTasks } from './tasks/taskActions';
-export { fetchLogin } from './user/userActions';
+export { fetchLogin, autologin } from './user/userActions';

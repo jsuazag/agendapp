@@ -4,6 +4,8 @@ import {
   FETCH_LOGIN_FAILURE,
   FETCH_LOGIN_REQUEST,
   FETCH_LOGIN_SUCCESS,
+  AUTOLOGIN_FAILURE,
+  AUTOLOGIN_SUCCESS
 } from "./userTypes";
 
 export const fetchLogin = (credentials = {}) => {
@@ -45,3 +47,23 @@ export const fetchLoginFailure = (error) => {
     payload: error,
   };
 };
+
+export const autologinFailure = () => {
+  return {
+    type: AUTOLOGIN_FAILURE
+  }
+}
+
+export const autologinSuccess = () => {
+  return {
+    type: AUTOLOGIN_SUCCESS
+  }
+}
+
+export const autologin = () => {
+  return (dispacth) => {
+    const token = localStorage.getItem(TOKEN);
+    if (token) dispacth(autologinSuccess());
+    if (!token) dispacth(autologinFailure());
+  }
+}

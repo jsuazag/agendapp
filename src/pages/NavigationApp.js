@@ -10,7 +10,8 @@ import { CreateTask } from "./CreateTask";
 import { TaskDetail } from "./TaskDetail";
 import { Menu } from "../components/Menu";
 import { PageWrapperMenu } from "../globalStyles";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { autologin } from '../store'
 
 const AuthenticatedUser = ({children}) => {
 
@@ -37,17 +38,15 @@ const NotAuthenticatedUser = ({children}) => {
 export const NavigationApp = () => {
 
   const userData = useSelector(state => state.user);
-
-  //const [auth, setAuth] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+      dispatch(autologin());
+    }, 500);
   }, []);
 
-  if (isLoading) {
+  if (userData.splash) {
     return <Splash />
   }
 
