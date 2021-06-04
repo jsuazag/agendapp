@@ -10,7 +10,7 @@ import { CreateTask } from "./CreateTask";
 import { TaskDetail } from "./TaskDetail";
 import { Menu } from "../components/Menu";
 import { PageWrapperMenu } from "../globalStyles";
-
+import { useSelector } from 'react-redux';
 
 const AuthenticatedUser = ({children}) => {
 
@@ -36,12 +36,13 @@ const NotAuthenticatedUser = ({children}) => {
 
 export const NavigationApp = () => {
 
-  const [auth, setAuth] = useState(false);
+  const userData = useSelector(state => state.user);
+
+  //const [auth, setAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setAuth(false);
       setIsLoading(false);
     }, 1000);
   }, []);
@@ -53,7 +54,7 @@ export const NavigationApp = () => {
   return (
     <Router>
       {
-        !auth && (
+        !userData.isAuth && (
           <NotAuthenticatedUser>
             <Switch>
               <Route exact path="/" component={Signin} />
@@ -65,7 +66,7 @@ export const NavigationApp = () => {
       }
 
       {
-        auth && (
+        userData.isAuth && (
           <AuthenticatedUser>
             <Switch>
               <Route exact path="/">
