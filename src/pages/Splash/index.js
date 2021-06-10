@@ -12,7 +12,7 @@ const SplashWrapper = styled.div`
 export const Splash = () => (
   <React.Fragment>
     <SplashWrapper>
-      <img src="./assets/logo.png" />
+      <img alt="logo agendapp" src="./assets/logo.png" />
     </SplashWrapper>
   </React.Fragment>
 );

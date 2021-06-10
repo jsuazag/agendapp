@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { LinkTo } from "../../components/LinkTo";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { FormGroup, PageWrapper } from "../../globalStyles";
 import { LogoWrapper, TopLink } from "./styles";
 import {LabelError} from '../../globalStyles';
@@ -16,7 +16,6 @@ export const Signin = () => {
 
   const {
     register,
-    control,
     handleSubmit,
     formState: {
       errors,

@@ -1,5 +1,4 @@
 import { requestHttp, HTTP_VERBS } from '../../utils/HttpRequest';
-import { TOKEN } from '../../constants/Auth';
 import { USERS } from '../../constants/HttpEndpoints';
 import {
   FETCH_LOGIN_FAILURE,
