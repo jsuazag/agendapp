@@ -1,5 +1,6 @@
 import { requestHttp, HTTP_VERBS } from '../../utils/HttpRequest';
 import { TOKEN } from '../../constants/Auth';
+import { USERS } from '../../constants/HttpEndpoints';
 import {
   FETCH_LOGIN_FAILURE,
   FETCH_LOGIN_REQUEST,
@@ -7,6 +8,7 @@ import {
   AUTOLOGIN_FAILURE,
   AUTOLOGIN_SUCCESS
 } from "./userTypes";
+import { getToken, setToken } from '../../utils/LocalStorageToken';
 
 export const fetchLogin = (credentials = {}) => {
   return (dispacth) => {
@@ -15,10 +17,10 @@ export const fetchLogin = (credentials = {}) => {
       try {
         const response = await requestHttp({
           method: HTTP_VERBS.POST,
-          endpoint: "auth/signin",
+          endpoint: USERS.login,
           data: credentials
         });
-        localStorage.setItem(TOKEN, response.data.token)
+        setToken(response.data.token);
         dispacth(fetchLoginSuccess());
       } catch (error) {
         const messageError = error.response.statusText || 'error';
@@ -62,8 +64,19 @@ export const autologinSuccess = () => {
 
 export const autologin = () => {
   return (dispacth) => {
-    const token = localStorage.getItem(TOKEN);
-    if (token) dispacth(autologinSuccess());
-    if (!token) dispacth(autologinFailure());
+    const callHttp = async () => {
+      try {
+        const token = getToken();
+        await requestHttp({
+          method: HTTP_VERBS.POST,
+          endpoint: USERS.check,
+          token
+        });
+        dispacth(autologinSuccess());
+      } catch (error) {
+        dispacth(autologinFailure());
+      }
+    };
+    callHttp();
   }
 }

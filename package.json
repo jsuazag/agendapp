@@ -19,6 +19,7 @@
     "react-scripts": "^4.0.3",
     "react-select": "^4.3.0",
     "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.3",
     "web-vitals": "^1.1.1"
