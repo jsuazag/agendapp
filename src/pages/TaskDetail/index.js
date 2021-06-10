@@ -4,7 +4,7 @@ import { Topbar } from "../../components/Topbar";
 import { getStatusById } from "../../constants/TaskStatus";
 import { TaskDescription, TaskFooter, TaskDueDate, TaskResponsable, TaskStatusLabel, TaskTitle } from "./styles";
 
-export const TaskDetail = ({title}) => {
+const TaskDetail = ({title}) => {
   const history = useHistory();
   const { id } = useParams();
 
@@ -30,3 +30,5 @@ export const TaskDetail = ({title}) => {
     </Fragment>
   );
 };
+
+export default TaskDetail;

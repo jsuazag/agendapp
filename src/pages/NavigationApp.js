@@ -1,20 +1,21 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import { Splash } from "./Splash";
 import { Signup } from "./Signup";
 import { Signin } from "./Signin";
 import { NotFound } from "./NotFound";
-import Home from "./Home";
-import { Schedule } from "./Schedule";
-import { CreateTask } from "./CreateTask";
-import { TaskDetail } from "./TaskDetail";
 import { Menu } from "../components/Menu";
 import { PageWrapperMenu } from "../globalStyles";
 import { useSelector, useDispatch } from 'react-redux';
-import { autologin } from '../store'
+import { autologin } from '../store';
+import { Loading } from "../components/Loading";
+
+const Home = React.lazy(() => import('./Home'));
+const Schedule = React.lazy(() => import('./Schedule'));
+const CreateTask = React.lazy(() => import('./CreateTask'));
+const TaskDetail = React.lazy(() => import('./TaskDetail'));
 
 const AuthenticatedUser = ({children}) => {
-
   const {pathname } = useLocation();
 
   useEffect(() => {
@@ -67,21 +68,23 @@ export const NavigationApp = () => {
       {
         userData.isAuth && (
           <AuthenticatedUser>
-            <Switch>
-              <Route exact path="/">
-                <Home title="Tasks" />
-              </Route>
-              <Route path="/schedule">
-                <Schedule title="Schedules" />
-              </Route>
-              <Route path="/create">
-                <CreateTask title="Create new task" />
-              </Route>
-              <Route path="/detail/:id">
-                <TaskDetail title="Task detail" />
-              </Route>
-              <Route path="*" component={NotFound} />
-            </Switch>
+            <Suspense fallback={<Loading />}>
+              <Switch>
+                <Route exact path="/">
+                  <Home title="Tasks" />
+                </Route>
+                <Route path="/schedule">
+                  <Schedule title="Schedules" />
+                </Route>
+                <Route path="/create">
+                  <CreateTask title="Create new task" />
+                </Route>
+                <Route path="/detail/:id">
+                  <TaskDetail title="Task detail" />
+                </Route>
+                <Route path="*" component={NotFound} />
+              </Switch>
+            </Suspense>
           </AuthenticatedUser>
         )
       }

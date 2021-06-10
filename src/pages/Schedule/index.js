@@ -25,7 +25,7 @@ const CALENDAR_VIEW_MODE = {
 };
 
 
-export const Schedule = ({ title }) => {
+const Schedule = ({ title }) => {
   const [calendarDefaultView, setCalendarDefaultView] = useState(CALENDAR_VIEW_MODE.DAY);
   const [loading, setLoading] = useState(true);
   const { screenViewPort } = useScreenViewPort();
@@ -66,3 +66,6 @@ export const Schedule = ({ title }) => {
     </Fragment>
   );
 };
+
+
+export default Schedule;

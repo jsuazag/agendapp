@@ -17,7 +17,7 @@ const USERS = [
   { value: 6, label: "Gaspar" },
 ];
 
-export const CreateTask = ({ title }) => {
+const CreateTask = ({ title }) => {
   
   const {
     register,
@@ -123,3 +123,5 @@ export const CreateTask = ({ title }) => {
     </Fragment>
   );
 };
+
+export default CreateTask;
