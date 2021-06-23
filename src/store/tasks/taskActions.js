@@ -6,6 +6,23 @@ import {
 import { HTTP_VERBS, requestHttp } from '../../utils/HttpRequest';
 import { TASKS } from "../../constants/HttpEndpoints";
 import { getToken } from "../../utils/LocalStorageToken";
+import { redirect } from '../index';
+
+// esto no debería estar acá... pero es para emular el comportamiento...
+export const fetchCreateTask = (taskData) => {
+  return (dispacth) => {
+    try {
+      // vamos al servidor... 
+      // si todo salio bien...
+      //dispacth(fetchCreateTaskSuccess(data));
+      dispacth(redirect('/'));
+    } catch (error) {
+      //dispacth(fetchCreateTaskFailure());
+    }
+  }
+}
+
+// fin...
 
 export const fetchTasks = (filter = {}) => {
   return (dispacth) => {

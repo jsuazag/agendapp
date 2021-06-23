@@ -14,6 +14,7 @@ import { PageWrapperMenu } from "../globalStyles";
 import { useSelector, useDispatch } from "react-redux";
 import { autologin } from "../store";
 import { Loading } from "../components/Loading";
+import { redirectDone } from './../store';
 
 const Home = React.lazy(() => import("./Home"));
 const Schedule = React.lazy(() => import("./Schedule"));
@@ -21,10 +22,13 @@ const CreateTask = React.lazy(() => import("./CreateTask"));
 const TaskDetail = React.lazy(() => import("./TaskDetail"));
 
 const AuthenticatedUser = ({ children }) => {
+  
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   useEffect(() => {
     console.log("pathname", pathname);
+    dispatch(redirectDone());
   }, [pathname]);
 
   return (

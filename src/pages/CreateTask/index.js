@@ -7,6 +7,9 @@ import DatePicker from "react-date-picker";
 import { useForm, Controller } from "react-hook-form";
 import { Textarea } from "./styles";
 import { FormGroup, LabelError } from "../../globalStyles";
+import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCreateTask } from './../../store';
 
 const USERS = [
   { value: 1, label: "Juan" },
@@ -18,6 +21,9 @@ const USERS = [
 ];
 
 const CreateTask = ({ title }) => {
+
+  const dispacth = useDispatch();
+  const redirectData = useSelector(state => state.redirect);
   
   const {
     register,
@@ -31,11 +37,12 @@ const CreateTask = ({ title }) => {
 
   const onSubmitCreate = (data) => {
     console.log("data form", data);
+    dispacth(fetchCreateTask(data));
   };
 
-  /*useEffect(() => {
-    console.log('formState', formState);
-  }, [formState])*/
+  if (redirectData.path !== '') {
+    return <Redirect to={{ pathname: redirectData.path }} />
+  }
 
   return (
     <Fragment>
